@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Login | iTBI</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link type="text/css" rel="stylesheet" href="css/stylesheet.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no user-scalable = yes"
+    />
+  </head>
+  <body oncontextmenu="return false">
+    <div class="container" id="content">
+      <img id="logo" src="/img/iTBI.png" />
+      <div class="row-min-vh-50 d-flex">
+        <img id="image" src="/img/login.jpg" />
+        <div class="col-auto" id="login">
+          <form class="row">
+            <label for="username">Username:</label> <input
+              type="text"
+              id="username"
+              name="user"
+            />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="pass" />
+            <div class="row" id="lower">
+              <div class="col">
+                <input id="checkbox" type="checkbox" /><label for="checkbox"
+                  >Keep me logged in</label
+                >
+              </div>
+              <input type="submit" onclick="check(this.form)" value="Login" />
+            </div>
+            <!-- / lower -->
+            
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      function check(form) {
+        if (form.user.value === "doc1" && form.pass.value === "password") {
+          window.location.href = "/landing.html";
+          window.open("/landing.html");
+        } else {
+          alert("The username and password do not match");
+        }
+      }
+    </script>
+  </body>
+</html>

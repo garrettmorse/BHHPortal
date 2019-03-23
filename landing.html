@@ -1,0 +1,106 @@
+<html>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <link type="text/css" rel="stylesheet" href="/css/landing.css" />
+  <meta charset="utf-8" />
+  <title>Welcome to iTBI</title>
+  <body>
+    <div class="container-fluid">
+      <div id="header" class="row d-flex">
+        <img
+          style="position: absolute; height: 15%; width: 15%"
+          src="/img/iTBI.png"
+        />
+        <div style="margin-top: 50px" class="col">
+          <h1 id="head-name" class="text-center">iTBI Medical Portal</h1>
+          <hr />
+        </div>
+      </div>
+      <div class="row d-flex">
+        <div class="col-sm-auto">
+          <h6 class="text-left">
+            Logged in As: Dr. Dolittle
+            <p class="text-left">
+              <button style="margin-top: 2px;" type="button" onclick="logout()">
+                Logout
+              </button>
+            </p>
+          </h6>
+          <table
+            style="margin-bottom:25px"
+            id="element"
+            class="text-center table-responsive table-hover table-bordered"
+          >
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">ID</th>
+                <th scope="col">Patient Info</th>
+              </tr>
+            </thead>
+            <tr id="element">
+              <th>1</th>
+              <th>John Doe</th>
+              <th>412851</th>
+              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+            </tr>
+            <tr id="element">
+              <th>2</th>
+              <th>Jane Doe</th>
+              <th>274557</th>
+              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+            </tr>
+
+            <tr id="element">
+              <th>3</th>
+              <th>Randy Myers</th>
+              <th>987642</th>
+              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+            </tr>
+
+            <tr id="element">
+              <th>4</th>
+              <th>Johnathan O'Donell</th>
+              <th>478213</th>
+              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+            </tr>
+
+            <tr id="element">
+              <th>5</th>
+              <th>Mike Smith</th>
+              <th>787421</th>
+              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+            </tr>
+
+            <tr id="element">
+              <th>6</th>
+              <th>Karen Jones</th>
+              <th>859691</th>
+              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-auto align-self-center">
+          <input type="file" id="upload" onclick="upload()" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openInfo() {
+        console.log("hello");
+        window.open("patient.html");
+      }
+
+      function logout() {
+        window.close();
+      }
+      function upload() {}
+    </script>
+  </body>
+</html>
