@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="row d-flex">
-        <div class="col-sm-auto">
-          <h6 class="text-left">
+        <div style="margin-left:150px" class="col-sm-auto">
+          <h6 style="margin-left:-150px" class="text-left">
             Logged in As: Dr. Dolittle
             <p class="text-left">
               <button style="margin-top: 2px;" type="button" onclick="logout()">
@@ -30,6 +30,7 @@
               </button>
             </p>
           </h6>
+          <h2>Your Patients</h2>
           <table
             style="margin-bottom:25px"
             id="element"
@@ -47,54 +48,87 @@
               <th>1</th>
               <th>John Doe</th>
               <th>412851</th>
-              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+              <th>
+                <input type="submit" onclick="openInfo('john')" value=">" />
+              </th>
             </tr>
             <tr id="element">
               <th>2</th>
               <th>Jane Doe</th>
               <th>274557</th>
-              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+              <th>
+                <input type="submit" onclick="openInfo('jane')" value=">" />
+              </th>
             </tr>
 
             <tr id="element">
               <th>3</th>
               <th>Randy Myers</th>
               <th>987642</th>
-              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+              <th>
+                <input type="submit" onclick="openInfo('randy')" value=">" />
+              </th>
             </tr>
 
             <tr id="element">
               <th>4</th>
               <th>Johnathan O'Donell</th>
               <th>478213</th>
-              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+              <th>
+                <input
+                  type="submit"
+                  onclick="openInfo('johnathan')"
+                  value=">"
+                />
+              </th>
             </tr>
 
             <tr id="element">
               <th>5</th>
               <th>Mike Smith</th>
               <th>787421</th>
-              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+              <th>
+                <input type="submit" onclick="openInfo('mike')" value=">" />
+              </th>
             </tr>
 
             <tr id="element">
               <th>6</th>
               <th>Karen Jones</th>
               <th>859691</th>
-              <th><input type="submit" onclick="openInfo()" value=">" /></th>
+              <th>
+                <input type="submit" onclick="openInfo('karen')" value=">" />
+              </th>
             </tr>
           </table>
         </div>
-        <div class="col-md-auto align-self-center">
+        <div class="col-md-auto">
+          <h1>Document Upload</h1>
           <input type="file" id="upload" onclick="upload()" />
         </div>
       </div>
     </div>
 
     <script>
-      function openInfo() {
-        console.log("hello");
-        window.open("patient.html");
+      function openInfo(id) {
+        if (id === "john") {
+          window.open("patient1.html");
+        }
+        if (id === "jane") {
+          window.open("patient2.html");
+        }
+        if (id === "randy") {
+          window.open("patient3.html");
+        }
+        if (id === "johnathan") {
+          window.open("patient4.html");
+        }
+        if (id === "mike") {
+          window.open("patient5.html");
+        }
+        if (id === "karen") {
+          window.open("patient6.html");
+        }
       }
 
       function logout() {
