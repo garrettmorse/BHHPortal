@@ -25,17 +25,21 @@
             <label for="username">Username:</label> <input
               type="text"
               id="username"
-              name="user"
+              name="username"
             />
             <label for="password">Password:</label>
-            <input type="password" id="password" name="pass" />
+            <input type="password" id="password" name="password" />
             <div class="row" id="lower">
               <div class="col">
                 <input id="checkbox" type="checkbox" /><label for="checkbox"
                   >Keep me logged in</label
                 >
               </div>
-              <input type="submit" onclick="check(this.form)" value="Login" />
+              <input
+                type="submit"
+                onclick="return check(this.form);"
+                value="Login"
+              />
             </div>
             <!-- / lower -->
             
@@ -43,14 +47,30 @@
         </div>
       </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script>
       function check(form) {
-        if (form.user.value === "doc1" && form.pass.value === "password") {
-          window.location.href = "/landing.html";
-          window.open("/landing.html");
-        } else {
-          alert("The username and password do not match");
-        }
+        var body = new FormData();
+
+        body.append("username", form.username.value);
+        body.append("password", form.password.value);
+
+        fetch("http://localhost:5000/login", {
+          method: "POST",
+          body: body
+        })
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(json) {
+            if (json.names) {
+              Cookies.set("patient-names", JSON.stringify(json.names));
+              window.location.href = "http://localhost:8000/landing.html";
+            }
+          });
+
+        return false;
       }
     </script>
   </body>
