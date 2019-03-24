@@ -33,9 +33,7 @@
               <div class="col-md-2"></div>
             </div>
           </div>
-          <table
-            class="table text-center table-hover table-bordered"
-          >
+          <table class="table text-center table-hover table-bordered">
             <thead class="thead-light">
               <tr>
                 <th>#</th>
@@ -43,8 +41,7 @@
                 <th>ID</th>
               </tr>
             </thead>
-            <tbody id="table">
-            </tbody>
+            <tbody id="table"></tbody>
           </table>
         </div>
         <div class="col-sm-4"></div>
@@ -74,7 +71,7 @@
         console.log(names);
         var current = 0;
         for (var i = 0; i < names.length; i++) {
-          fetch("http://localhost:5000/user/" + names[i] + "/data", {
+          fetch("http://18.216.125.191:5000/user/" + names[i] + "/data", {
             mode: "cors"
           })
             .then(function(response) {

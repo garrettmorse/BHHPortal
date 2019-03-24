@@ -1,8 +1,11 @@
 var uploadFile = function() {
   var params = new URLSearchParams(window.location.search);
 
+  var loader = document.getElementById("loading");
+  loader.setAttribute("class", "loader");
+
   var body = new FormData();
-  var subject = document.getElementById("file-form-subject").value
+  var subject = document.getElementById("file-form-subject").value;
   var details = {
     name: "Dr. Stevens",
     phone: "513 760 2878",
@@ -21,18 +24,16 @@ var uploadFile = function() {
     body.append(`file-${i}`, files[i]);
   }
 
-  fetch("http://localhost:5000/add/" + params.get("name"), {
+  fetch("http://18.216.125.191:5000/add/" + params.get("name"), {
     mode: "cors",
     method: "POST",
     body: body
-  })
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(json) {
-      console.log(json);
-    });
-
+  }).then(function(response) {
+    var success = document.getElementById("success");
+    var onSuccess = document.createTextNode("Upload Complete!");
+    success.innerHTML = "Upload Complete!";
+    loader.setAttribute("class", "");
+  });
 
   return false;
 };

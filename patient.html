@@ -101,37 +101,22 @@
           aria-labelledby="contact-tab"
         >
           <h4 id="caregiver" style="margin-top:10px;"></h4>
-          <div class="col-sm-3">
+          <div class="col-sm-6">
             <table
-              id="element"
               style="padding: 2px;"
-              class="text-center table-responsive table-hover table-bordered"
+              class="text-center table-hover table-bordered"
             >
               <tr>
                 <th>Home Address:</th>
-                <th id="address"></th>
+                <td id="address"></td>
               </tr>
-            </table>
-
-            <table
-              id="element"
-              style="padding: 2px;"
-              class="text-center table-responsive table-hover table-bordered"
-            >
               <tr>
                 <th>Phone Number:</th>
-                <th id="phone"></th>
+                <td id="phone"></td>
               </tr>
-            </table>
-
-            <table
-              id="element"
-              style="padding: 2px;"
-              class="text-center table-responsive table-hover table-bordered"
-            >
               <tr>
                 <th>Email Address:</th>
-                <th id="email"></th>
+                <td id="email"></td>
               </tr>
             </table>
           </div>
@@ -180,22 +165,25 @@
         >
           <div class="row">
             <div class="col-md-6">
-              <table style="margin-bottom: 25px; margin-top: 25px">
+              <table
+                class="table table-responsive table-hover"
+                style="margin-bottom: 25px; margin-top: 25px"
+              >
                 <tr>
                   <th style="padding-right: 10px">Height:</th>
-                  <th id="height"></th>
+                  <td id="height"></td>
                 </tr>
                 <tr>
                   <th style="padding-right: 10px">Weight:</th>
-                  <th id="weight"></th>
+                  <td id="weight"></td>
                 </tr>
                 <tr>
                   <th style="padding-right: 10px">Age:</th>
-                  <th id="age"></th>
+                  <td id="age"></td>
                 </tr>
                 <tr>
                   <th style="padding-right: 10px">Patient ID:</th>
-                  <th id="id"></th>
+                  <td id="id"></td>
                 </tr>
               </table>
 
@@ -211,11 +199,24 @@
           role="tabpanel"
           aria-labelledby="docs-tab"
         >
-          <form id="file-form" action="" onsubmit="uploadFile();return false;">
-            <input id="file-form-subject" />
-            <input id="input-file" type="file" multiple />
-            <input type="submit" />
-          </form>
+          <div class="row">
+            <div class="col-auto">
+              <h4 style="margin-top: 18px;">Subject:&nbsp;</h4>
+            </div>
+            <div style="margin-left: -25px;" class="col-auto">
+              <form
+                id="file-form"
+                action=""
+                onsubmit="uploadFile();return false;"
+              >
+                <input id="file-form-subject" />
+                <input id="input-file" type="file" multiple />
+                <input type="submit" />
+              </form>
+            </div>
+            <div class="col-auto"><div id="loading"></div></div>
+          </div>
+          <h3 id="success"></h3>
         </div>
       </div>
     </div>
@@ -226,7 +227,7 @@
         // Patient Name
         var patientName = nameParam.get("name");
 
-        fetch("http://localhost:5000/user/" + patientName + "/data", {
+        fetch("http://18.216.125.191:5000/user/" + patientName + "/data", {
           mode: "cors"
         })
           .then(function(response) {
