@@ -100,7 +100,7 @@
           role="tabpanel"
           aria-labelledby="contact-tab"
         >
-          <h4 style="margin-top:10px;">Bob Jones</h4>
+          <h4 id="caregiver" style="margin-top:10px;"></h4>
           <div class="col-sm-3">
             <table
               id="element"
@@ -109,7 +109,7 @@
             >
               <tr>
                 <th>Home Address:</th>
-                <th>1234 Wallaby Ct</th>
+                <th id="address"></th>
               </tr>
             </table>
 
@@ -120,7 +120,7 @@
             >
               <tr>
                 <th>Phone Number:</th>
-                <th>(555)567-5309</th>
+                <th id="phone"></th>
               </tr>
             </table>
 
@@ -131,7 +131,7 @@
             >
               <tr>
                 <th>Email Address:</th>
-                <th>bobj6@mail.com</th>
+                <th id="email"></th>
               </tr>
             </table>
           </div>
@@ -183,45 +183,25 @@
               <table style="margin-bottom: 25px; margin-top: 25px">
                 <tr>
                   <th style="padding-right: 10px">Height:</th>
-                  <th>5'10"</th>
+                  <th id="height"></th>
                 </tr>
                 <tr>
                   <th style="padding-right: 10px">Weight:</th>
-                  <th>195</th>
+                  <th id="weight"></th>
                 </tr>
                 <tr>
                   <th style="padding-right: 10px">Age:</th>
-                  <th>45</th>
+                  <th id="age"></th>
                 </tr>
                 <tr>
                   <th style="padding-right: 10px">Patient ID:</th>
-                  <th>412851</th>
+                  <th id="id"></th>
                 </tr>
               </table>
 
               <h5>Patient Summary</h5>
               <hr />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quam
-                nunc, vehicula ac placerat nec, euismod sit amet tortor. Integer
-                sed malesuada tellus. Nunc ligula dolor, gravida quis nisl a,
-                bibendum scelerisque elit. Fusce condimentum metus at ultrices
-                aliquet. Sed arcu leo, tempus vel gravida vitae, suscipit sed
-                dolor. Curabitur consequat massa non lacus tristique, eu mollis
-                massa maximus. Aliquam eleifend erat ac magna viverra, viverra
-                sodales urna congue. Duis accumsan ultricies libero, sit amet
-                egestas lorem facilisis tincidunt. Morbi at mauris eleifend,
-                venenatis ex nec, fermentum mi. In eu tellus at lorem porttitor
-                porta. Fusce tempus dui eget ex malesuada tincidunt. Nullam
-                cursus magna non sem malesuada scelerisque. To be quite honest,
-                we're not qualified to make a statement regarding Mr. Doe's
-                medical history, therefore we opted out of risking making any
-                egregious claims against Mr. Doe. Class aptent taciti sociosqu
-                ad litora torquent per conubia nostra, per inceptos himenaeos.
-                Aliquam et ultrices tellus. Duis id erat erat. Vivamus nisl
-                elit, scelerisque consequat leo tristique, feugiat egestas
-                purus.
-              </p>
+              <p id="summary"></p>
             </div>
           </div>
         </div>
@@ -231,18 +211,85 @@
           role="tabpanel"
           aria-labelledby="docs-tab"
         >
-          Assign Docs Here
+          <form onsubmit="upload()">
+            <input id="upload" type="file" multiple />
+            <input type="submit" onclick="return false" name="Submit Files" />
+          </form>
         </div>
       </div>
     </div>
     <script>
-      window.onload = function() {
-        var param = new URLSearchParams(window.location.search);
-        var patientName = param.get("name");
+      function upload() {
+        var nameParam = new URLSearchParams(window.location.search);
+        fetch("http://localhost:5000/user/" + nameParam.get("name") + "/data", {
+          mode: "cors"
+        })
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(json) {
+            document
+              .getElementById("upload")
+              .setAttribute("action", "http://localhost:5000/add/" + json.user);
+          });
+        console.log("hello");
+        return false;
+      }
+      window.onload = async function() {
+        var nameParam = new URLSearchParams(window.location.search);
+        // Patient Name
+        var patientName = nameParam.get("name");
 
-        var title = document.getElementById("title");
-        var titleText = document.createTextNode(" " + patientName);
-        title.appendChild(titleText);
+        fetch("http://localhost:5000/user/" + patientName + "/data", {
+          mode: "cors"
+        })
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(json) {
+            console.log(json);
+            var title = document.getElementById("title");
+            var titleText = document.createTextNode(" " + json.name);
+            title.appendChild(titleText);
+
+            // Caregiver Contact
+            var caregiver = document.getElementById("caregiver");
+            var cgText = document.createTextNode(json.caregiver.name);
+            caregiver.append(cgText);
+
+            var cgAddress = document.getElementById("address");
+            var address = document.createTextNode(json.caregiver.address);
+            cgAddress.append(address);
+
+            var cgPhone = document.getElementById("phone");
+            var phone = document.createTextNode(json.caregiver.phone);
+            cgPhone.append(phone);
+
+            var cgEmail = document.getElementById("email");
+            var email = document.createTextNode(json.caregiver.email);
+            cgEmail.append(email);
+
+            // Patient/TBI info
+            var height = document.getElementById("height");
+            var heightStr = document.createTextNode(json.info.height);
+            height.append(heightStr);
+
+            var weight = document.getElementById("weight");
+            var weightStr = document.createTextNode(json.info.weight);
+            weight.append(weightStr);
+
+            var age = document.getElementById("age");
+            var ageStr = document.createTextNode(json.info.age);
+            age.append(ageStr);
+
+            var id = document.getElementById("id");
+            var idStr = document.createTextNode(json.info.id);
+            id.append(idStr);
+
+            var summary = document.getElementById("summary");
+            var summaryStr = document.createTextNode(json.info.summary);
+            summary.append(summaryStr);
+          });
       };
     </script>
   </body>

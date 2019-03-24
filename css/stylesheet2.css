@@ -1,0 +1,66 @@
+body {
+  background-color: whitesmoke;
+}
+
+.pSize {
+  font-size: 2.4vh;
+}
+
+.pHeadSize {
+  font-size: 2.5vh;
+}
+
+.jobTitle {
+  color: green;
+  margin-bottom: 0px;
+}
+
+.jobLoc {
+  margin-bottom: 5px;
+}
+#first {
+  background-image: url("/img/me_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 75% 50%;
+  padding: 0px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  margin: 0;
+  max-width: 100%;
+}
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+.btn btn-primary {
+  background-color: white;
+}
+
+.group {
+  margin-bottom: 0px;
+}
+#imgTag {
+  border-radius: 50px;
+}
+
+#copy {
+  font-size: 4vmax, 0.5vmin;
+}
+#contactMe {
+  text-align: right;
+  font-size: 0.5vw;
+}
+
+h1 {
+  margin-left: 20px;
+}

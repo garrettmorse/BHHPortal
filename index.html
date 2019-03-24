@@ -64,9 +64,10 @@
             return response.json();
           })
           .then(function(json) {
+            console.log(json);
             if (json.names) {
               Cookies.set("patient-names", JSON.stringify(json.names));
-              window.location.href = "http://localhost:8000/landing.html";
+              window.location.href = "/landing.html";
             }
           });
 
