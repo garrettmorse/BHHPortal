@@ -211,30 +211,16 @@
           role="tabpanel"
           aria-labelledby="docs-tab"
         >
-          <form onsubmit="upload()">
-            <input id="upload" type="file" multiple />
-            <input type="submit" onclick="return false" name="Submit Files" />
+          <form id="file-form" action="" onsubmit="uploadFile();return false;">
+            <input id="file-form-subject" />
+            <input id="input-file" type="file" multiple />
+            <input type="submit" />
           </form>
         </div>
       </div>
     </div>
+    <script src="/js/patient.js"></script>
     <script>
-      function upload() {
-        var nameParam = new URLSearchParams(window.location.search);
-        fetch("http://localhost:5000/user/" + nameParam.get("name") + "/data", {
-          mode: "cors"
-        })
-          .then(function(response) {
-            return response.json();
-          })
-          .then(function(json) {
-            document
-              .getElementById("upload")
-              .setAttribute("action", "http://localhost:5000/add/" + json.user);
-          });
-        console.log("hello");
-        return false;
-      }
       window.onload = async function() {
         var nameParam = new URLSearchParams(window.location.search);
         // Patient Name
@@ -261,9 +247,9 @@
             var address = document.createTextNode(json.caregiver.address);
             cgAddress.append(address);
 
-            var cgPhone = document.getElementById("phone");
-            var phone = document.createTextNode(json.caregiver.phone);
-            cgPhone.append(phone);
+            document
+              .getElementById("phone")
+              .append(document.createTextNode(json.caregiver.phone));
 
             var cgEmail = document.getElementById("email");
             var email = document.createTextNode(json.caregiver.email);
